@@ -14,7 +14,8 @@ var MongoClient = mongodb.MongoClient;
 
 //(Focus on This Variable)
 //var url = 'mongodb://localhost:27017/my_database_name';
-var url = 'mongodb://hello:hello@ds033259.mlab.com:33259/urlshortener';
+var url = process.env.MONGOLAB_URI;
+//var url = 'mongodb://hello:hello@ds033259.mlab.com:33259/urlshortener';
 //(Focus on This Variable)
 var userurl;
 
@@ -45,7 +46,7 @@ var userurl;
           else {
             console.log('no such link found');
             var shortID = shortid.generate();
-            urls.insert({url: userurl, shortURL: host + '/' + shortID, shortid: shortID}, function(err, result){
+            urls.insert({url: userurl, shortURL: 'https://' + host + '/' + shortID, shortid: shortID}, function(err, result){
               if (err){
                 console.log (err)
               }
